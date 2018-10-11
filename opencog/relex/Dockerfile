@@ -233,4 +233,12 @@ RUN echo "(use-modules (ice-9 readline)) (activate-readline)\
 RUN echo "export PYTHONPATH=\$PYTHONPATH:/usr/local/lib/python3.5/dist-packages/" >> /home/relex/.profile
 RUN wget  https://raw.githubusercontent.com/singnet/semantic-vision/dca3aed52578084e39bb52ffff79dbff11098827/experiments/opencog/pattern_matcher_vqa/vqa -O /home/relex/projects/semantic-vision-1/experiments/opencog/pattern_matcher_vqa/vqa
 RUN chmod +x /home/relex/projects/semantic-vision-1/experiments/opencog/pattern_matcher_vqa/vqa
+
+RUN source /home/relex/miniconda3/bin/activate pmvqa3 && jupyter notebook --generate-config 
+RUN echo "c.NotebookApp.password = 'sha1:b6e570f197d6:b920933b262cf450f5c11dc21d878c53972cb2fa'" >> /home/relex/.jupyter/jupyter_notebook_config.py
+
+RUN echo "c.NotebookApp.password_required = False" >> /home/relex/.jupyter/jupyter_notebook_config.py
+
+RUN echo "c.NotebookApp.port = 8888" >> /home/relex/.jupyter/jupyter_notebook_config.py
+
 CMD /home/relex/projects/semantic-vision-1/experiments/opencog/pattern_matcher_vqa/vqa
